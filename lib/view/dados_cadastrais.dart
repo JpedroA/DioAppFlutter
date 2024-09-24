@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/repositories/nivel_repository.dart';
 import 'package:login_page/shared/widgets/text_Label.dart';
 
 class Cadastro extends StatefulWidget {
@@ -12,6 +13,17 @@ class _CadastroState extends State<Cadastro> {
   var nomeController = TextEditingController(text: "");
   var dataNascimentoController = TextEditingController(text: "");
   DateTime? dataNascimento;
+  var nivelRpository = NivelRepository();
+  var niveis = [];
+  var nivelSelecionado = "";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    niveis = nivelRpository.retornaNiveis();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,9 +38,6 @@ class _CadastroState extends State<Cadastro> {
             const TextLabel(texto: "Nome:"),
             TextField(
               controller: nomeController,
-            ),
-            const SizedBox(
-              height: 10,
             ),
             const TextLabel(texto: "Data de nascimento:"),
             TextField(
@@ -46,11 +55,26 @@ class _CadastroState extends State<Cadastro> {
                 }
               },
             ),
+            const TextLabel(texto: "Nivel de Experiência"),
+            Column(
+              children: niveis
+                  .map((nivel) => RadioListTile(
+                      title: Text(nivel.toString()),
+                      selected: nivelSelecionado == nivel,
+                      value: nivel.toString(),
+                      groupValue: nivelSelecionado,
+                      onChanged: (value) {
+                        print(value);
+                        setState(() {
+                          nivelSelecionado = value.toString();
+                        });
+                      }))
+                  .toList(),
+            ),
             TextButton(
                 onPressed: () {
                   print(nomeController.text);
-                   print(dataNascimento);
-
+                  print(dataNascimento);
                 },
                 child: const Text("SALVAR"))
           ],
