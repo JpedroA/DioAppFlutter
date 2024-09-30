@@ -10,36 +10,60 @@ class CustomDrawer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-         UserAccountsDrawerHeader(
-          decoration:const  BoxDecoration(color: Color.fromARGB(255, 133, 16, 242)),
-            currentAccountPicture: CircleAvatar(
-              backgroundColor: Colors.white,
-              child: Image.network("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.deviantart.com%2Fnoe3210%2Fart%2FAnakin-Skywalker-Icon-955629441&psig=AOvVaw1ZbrdVpi32HVSsE1Lf4UVK&ust=1727655751463000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCLiQi63x5ogDFQAAAAAdAAAAABAu")),
-            accountName: const Text("João Pedro"),
-             accountEmail:const  Text("jpedro@email.com")),
+          InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  context: context,
+                  builder: (BuildContext bc) {
+                    return const Wrap(children: [
+                      ListTile(
+                        title: Text('Câmera'),
+                        leading: Icon(Icons.camera),
+                      ),
+                      ListTile(
+                        title: Text('Galeria'),
+                        leading: Icon(Icons.photo_album),
+                      ),
+                    ]);
+                  });
+            },
+            child: UserAccountsDrawerHeader(
+                decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 133, 16, 242)),
+                currentAccountPicture: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Image.network(
+                        "https://hermes.digitalinnovation.one/assets/diome/logo.png")),
+                accountName: const Text("João Pedro"),
+                accountEmail: const Text("jpedro@email.com")),
+          ),
           InkWell(
               child: Container(
-                  padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   width: double.infinity,
-                  child:const Row(
+                  child: const Row(
                     children: [
                       Icon(Icons.person),
-                      SizedBox(width: 5,),
+                      SizedBox(
+                        width: 5,
+                      ),
                       Text("Dados cadastráis"),
                     ],
                   )),
               onTap: () {
                 Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const Cadastro()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const Cadastro()));
               }),
           const SizedBox(height: 10),
           const Divider(),
           InkWell(
               child: Container(
-                 padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   width: double.infinity,
                   child: const Row(
                     children: [
@@ -48,14 +72,42 @@ class CustomDrawer extends StatelessWidget {
                       Text("termos de uso e privacidade"),
                     ],
                   )),
-              onTap: () {}),
+              onTap: () {
+                showModalBottomSheet(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(2)),
+                    context: context,
+                    builder: (BuildContext bc) {
+                      return const Padding(
+                        padding:
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                        child: Column(
+                          children: [
+                            Text(
+                              "termos de uso e privacidade",
+                              style: TextStyle(
+                                  fontSize: 25, fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                                "O pedaço padrão do Lorem Ipsum usado desde 1500 é reproduzido abaixo para os interessados. As seções 1.10.32 e 1.10.33 de de Finibus Bonorum et Malorum de Cícero também são reproduzidas em sua forma original exata, acompanhadas por versões em inglês da tradução de 1914 por H. Rackham.",
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(fontSize: 20)),
+                          ],
+                        ),
+                      );
+                    });
+              }),
           const SizedBox(height: 10),
           const Divider(),
           InkWell(
             child: Container(
-                padding: const EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 width: double.infinity,
-                child:const Row(
+                child: const Row(
                   children: [
                     Icon(Icons.add_circle),
                     SizedBox(width: 5),
