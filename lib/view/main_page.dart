@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/view/dados_cadastrais.dart';
+import 'package:login_page/shared/widgets/custom_drawer.dart';
 import 'package:login_page/view/pageBlue.dart';
 import 'package:login_page/view/pagePink.dart';
 import 'package:login_page/view/pageYellow.dart';
@@ -19,48 +19,7 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(title: const Text("Home")),
-        drawer: Drawer(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                InkWell(
-                    child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        width: double.infinity,
-                        child: const Text("dados cadastrais")),
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Cadastro()
-                              )
-                              );
-                    }
-                    ),
-                const SizedBox(height: 10),
-                const Divider(),
-                InkWell(
-                    child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 5),
-                        width: double.infinity,
-                        child: const Text("termos de uso e privacidade")),
-                    onTap: () {}),
-                const SizedBox(height: 10),
-                const Divider(),
-                InkWell(
-                  child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      width: double.infinity,
-                      child: const Text("configurações")),
-                  onTap: () {},
-                )
-              ],
-            ),
-          ),
-        ),
+        drawer: const CustomDrawer(),
         body: Column(
           children: [
             Expanded(
