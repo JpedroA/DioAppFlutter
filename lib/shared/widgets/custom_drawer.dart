@@ -75,7 +75,7 @@ class CustomDrawer extends StatelessWidget {
               onTap: () {
                 showModalBottomSheet(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(2)),
+                        borderRadius: BorderRadius.circular(10)),
                     context: context,
                     builder: (BuildContext bc) {
                       return const Padding(
@@ -111,11 +111,38 @@ class CustomDrawer extends StatelessWidget {
                   children: [
                     Icon(Icons.add_circle),
                     SizedBox(width: 5),
-                    Text("configurações"),
+                    Text("Configurações"),
                   ],
                 )),
             onTap: () {},
-          )
+          ),
+          const Divider(),
+          const SizedBox(),
+          InkWell(
+            child: Container(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                width: double.infinity,
+                child: const Row(
+                  children: [
+                    Icon(Icons.exit_to_app),
+                    SizedBox(width: 5),
+                    Text("Sair"),
+                  ],
+                )),
+            onTap: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext bc) {
+                    return const AlertDialog(
+                      title: Text("meu app"),
+                      content: SizedBox(
+                        child: Text("Deseja mesmo sair do aplicativo?"),
+                      ),
+                    );
+                  });
+            },
+          ),
         ],
       ),
     );
