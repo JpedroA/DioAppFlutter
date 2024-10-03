@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/view/dados_cadastrais.dart';
+import 'package:login_page/view/login_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -134,11 +135,32 @@ class CustomDrawer extends StatelessWidget {
               showDialog(
                   context: context,
                   builder: (BuildContext bc) {
-                    return const AlertDialog(
-                      title: Text("meu app"),
-                      content: SizedBox(
-                        child: Text("Deseja mesmo sair do aplicativo?"),
+                    return AlertDialog(
+                      elevation: 8,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5)),
+                      title: const Text("meu app"),
+                      content: const Wrap(
+                        children: [
+                          Text("Voce sairá do aplicativo"),
+                          Text("Deseja mesmo sair do aplicativo?"),
+                        ],
                       ),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: const Text("Não")),
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const LoginPage()));
+                            },
+                            child: const Text("Sim")),
+                      ],
                     );
                   });
             },

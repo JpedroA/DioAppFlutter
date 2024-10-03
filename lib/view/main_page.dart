@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/shared/widgets/custom_drawer.dart';
-import 'package:login_page/view/pageBlue.dart';
+import 'package:login_page/view/card_page.dart';
 import 'package:login_page/view/pagePink.dart';
 import 'package:login_page/view/pageYellow.dart';
 
@@ -30,10 +30,10 @@ class _MainPageState extends State<MainPage> {
                     pagePosition = value;
                   });
                 },
-                children: const [
-                  PageBlue(),
-                  PageYelllow(),
-                  PagePink(),
+                children:  [
+                  CardPage(),
+                  const PageYelllow(),
+                  const PagePink(),
                 ],
               ),
             ),
@@ -43,8 +43,7 @@ class _MainPageState extends State<MainPage> {
               },
               currentIndex: pagePosition,
               items: const [
-                BottomNavigationBarItem(
-                  label: "pag1", icon: Icon(Icons.home)),
+                BottomNavigationBarItem(label: "pag1", icon: Icon(Icons.home)),
                 BottomNavigationBarItem(
                     label: "pag2", icon: Icon(Icons.camera)),
                 BottomNavigationBarItem(
