@@ -25,7 +25,7 @@ class CardTatailPage extends StatelessWidget {
                   children: [
                     Image.network(
                       cardDetail.url,
-                      height: 20,
+                      height: 30,
                     ),
                     Text(
                       cardDetail.title,
